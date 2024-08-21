@@ -3,7 +3,18 @@ on:
   pull_request:
     types: 
       - opened
+    branches: 
+      - main        #apenas main
+      - 'dev-*'     #dev-new dev-this-is-new  - um asterisco qualquer caracter de texto q possa vir dps do hifen
+      - 'feat/**'   #feat/new feat/new/button - dois asteriscos podem abranger tambem path files, além dos caracteres de texto 
   workflow_dispatch:
+  push:
+    branches: 
+      - main        #apenas main
+      - 'dev-*'     #dev-new dev-this-is-new  - um asterisco qualquer caracter de texto q possa vir dps do hifen
+      - 'feat/**'   #feat/new feat/new/button - dois asteriscos podem abranger tambem path files, além dos caracteres de texto 
+    paths-ignore:
+      - '.github/workflows/**' #ignora alterações nos arquivos de workflow. sem o 'ignore' ele só rodaria se houvesse alterações nesses arquivos
 jobs:
   deploy:
     runs-on: ubuntu-latest
